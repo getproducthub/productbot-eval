@@ -17,6 +17,7 @@ To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the fo
 
 # Instructions:
 Create a simple ai chatbot using [OpenAI's api](https://platform.openai.com/docs/api-reference/chat)
+To submit create a pull request to this repo
 
 ## Front End
 - Create a new page at `/chat`
@@ -28,3 +29,4 @@ Create a simple ai chatbot using [OpenAI's api](https://platform.openai.com/docs
 - Should contain an endpoint that recieves messages from the user then using Open AI's node sdk sends those messages to Open AI and recieves chat completions to return to the front end.
 - Open AI api key will be provided by Productbot.
 - Example endpoints can be found here: src/server/api/routers/post.ts
+

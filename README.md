@@ -16,7 +16,7 @@ To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the fo
 
 
 # Instructions:
-    Create a simple ai chatbot using [OpenAI's api](https://platform.openai.com/docs/api-reference/chat)
+Create a simple ai chatbot using [OpenAI's api](https://platform.openai.com/docs/api-reference/chat)
 
 ## Front End
 - Create a new page at `/chat`

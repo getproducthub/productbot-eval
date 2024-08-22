@@ -1,9 +1,7 @@
 import { z } from "zod";
-import OpenAI from "openai";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-
-const openai = new OpenAI();
+import { assistant } from "~/app/_utils/ai";
 
 export interface Message {
   id: number;
@@ -17,19 +15,14 @@ export const messageRouter = createTRPCRouter({
   create: publicProcedure
     .input(
       z.object({
-        question: z.string().min(1),
+        question: z.string().min(3),
       }),
     )
-    .mutation(async ({ input }) => {
-      const completion = await openai.chat.completions.create({
-        messages: [{ role: "system", content: input.question }],
-        model: "gpt-4o",
-      });
-
+    .mutation(async ({ input }) => {    
       const message: Message = {
         id: messagesDB.size + 1,
         question: input.question,
-        answer: completion.choices[0]?.message.content ?? null,
+        answer: await assistant.ask(input.question),
       };
   
       messagesDB.set(message.id, message);

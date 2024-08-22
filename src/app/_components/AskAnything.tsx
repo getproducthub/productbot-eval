@@ -2,12 +2,18 @@
 
 import { useCallback } from "react";
 import { api } from "~/trpc/react";
+import { toast } from 'react-toastify';
 
 const AskAnything: React.FC = () => {
   const utils = api.useUtils();
   
   const createMessage = api.message.create.useMutation({
     onSuccess: () => utils.message.invalidate(),
+    onError: (error) => {
+      toast.error(
+        error.data?.zodError == null ? error.message: error.data.zodError.fieldErrors.question?.[0]
+      );       
+    },
   });
 
   const handleOnSumbit = useCallback(
